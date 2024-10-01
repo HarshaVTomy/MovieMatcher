@@ -8,50 +8,80 @@
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Inline CSS for additional styling -->
+    <!-- Custom CSS for improved design -->
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #f8f9fa;
+            font-family: 'Roboto', sans-serif;
+            background-color: #40837d;
+            color: #333;
+            margin: 0;
+            padding: 0;
         }
         .container-fluid {
             padding: 30px;
         }
         .sidebar {
-            padding: 20px;
-            background-color: #343a40;
+            padding: 30px;
+            background-color: #a9c7c4;
             height: 100vh;
-            border-right: 2px solid #dc3545;
+            border-right: 2px solid #6c757d;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
         .main-content {
-            padding: 20px;
-            background-color: #212529;
+            padding: 40px;
+            background-color: #93ead0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
         .btn-submit {
-            background-color: #dc3545;
+            background-color: #007bff;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 12px;
             width: 100%;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 16px;
+            transition: background-color 0.3s ease;
         }
         .btn-submit:hover {
-            background-color: #c82333;
+            background-color: #0056b3;
         }
         .result {
             margin-top: 20px;
-            padding: 15px;
-            background-color: #343a40;
-            border-left: 4px solid #dc3545;
-            border-radius: 5px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
         }
-        h2, h1, h4 {
-            color: #dc3545;
+        h1, h2, h4 {
+            color: #007bff;
         }
         label {
-            color: #f8f9fa;
+            color: #333;
+        }
+        input.form-control {
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+        input.form-control:focus {
+            border-color: #007bff;
+            box-shadow: none;
+        }
+        .back-btn {
+            margin-top: 20px;
+            display: inline-block;
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #5a6268;
         }
     </style>
 </head>
@@ -62,33 +92,33 @@
             
             <!-- Sidebar for User Input -->
             <div class="col-md-3 sidebar">
-                <h2>Movie Recommendation Form</h2>
+                <h2>Movie Preferences</h2>
                 <form method="POST" action="{% url 'movie_recommendation' %}">
                     {% csrf_token %}
                     
                     <div class="mb-3">
                         <label for="rating" class="form-label">Rating Range:</label>
-                        <input type="text" id="rating" name="rating" class="form-control" placeholder="e.g., 4-5" required>
+                        <input type="text" id="rating" name="rating" class="form-control" value="4-5" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="genre" class="form-label">Genre:</label>
-                        <input type="text" id="genre" name="genre" class="form-control" placeholder="e.g., Action, Drama" required>
+                        <input type="text" id="genre" name="genre" class="form-control" value="Action, Drama" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="release_year" class="form-label">Release Year:</label>
-                        <input type="text" id="release_year" name="release_year" class="form-control" placeholder="e.g., 2020" required>
+                        <input type="text" id="release_year" name="release_year" class="form-control" value=" 2020" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="actor" class="form-label">Lead Actor:</label>
-                        <input type="text" id="actor" name="actor" class="form-control" placeholder="e.g., Tom Hanks" required>
+                        <input type="text" id="actor" name="actor" class="form-control" value="Tom Hanks" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="mood" class="form-label">Mood:</label>
-                        <input type="text" id="mood" name="mood" class="form-control" placeholder="e.g., Feel-good" required>
+                        <input type="text" id="mood" name="mood" class="form-control" value=" Feel-good" required>
                     </div>
 
                     <button type="submit" class="btn-submit">Get Recommendation</button>
@@ -107,32 +137,27 @@
                         <p>{{ recommendation }}</p>
                     </div>
                 {% endif %}
-            <div>
-                <!-- Additional information for description of the movies -->
+                <!-- Additional movie description or trivia -->
                 {% if movie_description %}
                     <div class="result">
                         <h4>Movie Descriptions:</h4>
                         <p>{{ movie_description }}</p>
                     </div>
                 {% endif %}
-            </div>
-            <p>
-                <!-- Additional area for displaying movie tips or trivia if they exist -->
                 {% if movie_tips %}
                     <div class="result">
                         <h4>Movie Trivia/Tips:</h4>
                         <p>{{ movie_tips }}</p>
                     </div>
                 {% endif %}
+
+                <!-- Back to Home Button -->
+                <a href="/" class="back-btn">← Back to Home</a>
             </div>
-        </p>
         </div>
     </div>
 
     <!-- Bootstrap JS (optional for interactive components) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <a href="/">
-        <button>Back To Home</button>
-    </a>
 </body>
 </html>

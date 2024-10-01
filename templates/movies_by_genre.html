@@ -92,8 +92,26 @@
         }
     }
 
+    .btn-back-to-movies {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #555;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      font-size: 1rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+   }
+
+   .btn-back-to-movies:hover {
+      background-color: #333;
+      color: #ff4c4c;
+  }
+
   </style>
-  <a href="/" class="text-gray-400 hover:text-white">← Back to movies</a>
+  <a href="/" class="btn-back-to-movies">← Back to movies</a>
   <div class="movie-list">
     {% for movie in movies %}
       <div class="movie-item">
@@ -111,5 +129,6 @@
       <p>No movies found in this genre.</p>
     {% endfor %}
   </div>
+  
 {% endblock %}
 

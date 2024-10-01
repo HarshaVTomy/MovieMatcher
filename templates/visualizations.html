@@ -7,26 +7,64 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
+            background-color: #f0f2f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            text-align: center;
         }
         canvas {
-            max-width: 600px;
-            margin: auto;
+            max-width: 700px;
+            width: 100%;  /* Make the canvas responsive */
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* Accessibility styles */
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .legend-item {
+            margin: 0 10px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-<h1>Movie Visualizations</h1>
+<div class="container">
+    <h1>Movie Visualizations</h1>
 
-<h2>Number of Movies per Genre</h2>
-<canvas id="genreChart"></canvas>
+    <h2>Number of Movies per Genre</h2>
+    <div class="chart-legend" aria-label="Genre Chart Legend"></div>
+    <canvas id="genreChart" aria-label="Number of Movies per Genre"></canvas>
 
-<h2>IMDb Rating Distribution</h2>
-<canvas id="ratingChart"></canvas>
+    <h2>IMDb Rating Distribution</h2>
+    <div class="chart-legend" aria-label="IMDb Rating Chart Legend"></div>
+    <canvas id="ratingChart" aria-label="IMDb Rating Distribution"></canvas>
+</div>
 
 <script>
     // Parse JSON data from Django context
@@ -56,6 +94,15 @@
                 y: {
                     beginAtZero: true
                 }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            return `Genre: ${tooltipItems[0].label}`;
+                        }
+                    }
+                }
             }
         }
     });
@@ -83,9 +130,39 @@
                 y: {
                     beginAtZero: true
                 }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            return `Rating: ${tooltipItems[0].label}`;
+                        }
+                    }
+                }
             }
         }
     });
+
+    // Create legends dynamically for better accessibility and interaction
+    function createLegend(chart, legendContainer) {
+        const legendItems = chart.data.datasets.map((dataset, index) => {
+            const item = document.createElement('div');
+            item.className = 'legend-item';
+            item.textContent = dataset.label;
+            item.style.color = dataset.borderColor;
+            item.onclick = () => {
+                chart.getDatasetMeta(index).hidden = !chart.getDatasetMeta(index).hidden;
+                chart.update();
+            };
+            return item;
+        });
+
+        legendContainer.innerHTML = ''; // Clear existing items
+        legendItems.forEach(item => legendContainer.appendChild(item));
+    }
+
+    createLegend(genreChart, document.querySelector('.chart-legend:nth-of-type(1)'));
+    createLegend(ratingChart, document.querySelector('.chart-legend:nth-of-type(2)'));
 </script>
 
 </body>

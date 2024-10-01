@@ -9,15 +9,21 @@
 </head>
 
 <body class="bg-blue-900 text-white" style="background-color: #181818;">
+   
+    {% load static %}
 
     <!-- Navbar -->
-    <header class="p-5 flex justify-between items-center">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" height="30" alt="Netflix Logo" width="110">
-        <nav class="flex space-x-5">
-            <span>Home</span>
-            <span>My list</span>
-            <span>Recommendations</span>
-        </nav>
+        <header class="p-5 flex justify-between items-center">
+            <img src="{% static 'moviematcher logo.png' %}" height="30" alt="Movie Matcher Logo" width="110">
+            <nav class="flex space-x-5">
+                <a href="/" class="text-white hover:underline">Home</a>
+                <a href="/my-list" class="text-white hover:underline">My List</a>
+                <a href="/movie-recommendation">Movie Picker</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
         <div class="flex space-x-5 items-center">
             <input type="search" placeholder="Search" class="bg-gray-700 p-2 rounded">
             <button class="bg-red-600 text-white p-2 rounded hover:bg-red-500">Search</button>

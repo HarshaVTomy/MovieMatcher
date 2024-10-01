@@ -21,7 +21,6 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.template.loader import render_to_string
 
 # Create your views here.
-@login_required(login_url='login')
 def index(request):
     movies = Movie.objects.all()
 
@@ -582,3 +581,9 @@ def customer_report(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def privacy_policy(request):
+    return render(request, 'privacy-policy.html')
+
+def terms(request):
+    return render(request, 'terms.html')
