@@ -579,3 +579,6 @@ def customer_report(request):
         'customers': customers,
     }
     return render(request, 'customer_report.html', context)
+
+def about(request):
+    return render(request, 'about.html')

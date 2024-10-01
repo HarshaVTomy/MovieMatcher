@@ -15,7 +15,7 @@
 
 <body>
     <header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="Netflix Logo">
+        <img src="{% static 'moviematcher logo.png' %}" alt="Moviematcher Logo">
         
         <nav>
             <span><a href="/">Home |</a></span>
@@ -55,7 +55,7 @@
                 </span>
                 <div id="accountDropdownContent" class="dropdown-content">
                     {% if user.is_authenticated %}
-                        <ul><a href="/edit_customer">Profile</a></ul>
+                        <ul><a href="/customer_dashboard">Customer Dashboard</a></ul>
                         <ul><a href="/logout">Logout</a></ul>
                     {% else %}
                         <ul><a href="/login">Login</a></ul>
@@ -96,6 +96,7 @@
                 data-release-date="{{ movie.release_date|date:'Y' }}"
                 data-genre="{{ movie.get_genre_display }}" 
                 data-length="{{ movie.length }}"
+                data-cast="{{ movie.movie_cast }}"
                 data-image-card-url="{{ movie.image_card.url }}"
                 data-image-cover-url="{{ movie.image_cover.url }}"
                 data-video-url="/movie/{{ movie.uu_id }}"
@@ -116,9 +117,12 @@
             </div>
             <img src="" alt="Movie Image">
             <div class="modal-details">
-                <span>Year: 2023</span>
-                <span>Length: 2h 15min</span>
+                <span class="year">Year: 2023 </span>|
+                <span class="length">Length: 2h 15min </span>|
+                <span class="genre">Genre: Action </span>|
+                <span class="cast">Cast: Mammotty</span>
             </div>
+            
             <p class="modal-description">Detailed information about the movie.</p>
             <div>
                 <a href="#">
@@ -132,24 +136,24 @@
     </div>
 
     <script>
-        function showModal(element) {
+       function showModal(element) {
             const title = element.getAttribute('data-title');
             const description = element.getAttribute('data-description');
             const releaseDate = element.getAttribute('data-release-date');
             const genre = element.getAttribute('data-genre');
+            const cast = element.getAttribute('data-cast');
             const length = element.getAttribute('data-length');
             const imageCoverUrl = element.getAttribute('data-image-cover-url');
-      
-
             const videoUrl = element.getAttribute('data-video-url');
-
 
             const modal = document.getElementById('movieModal');
             modal.querySelector('.modal-title').textContent = title;
             modal.querySelector('.modal-content img').src = imageCoverUrl;
             modal.querySelector('.modal-content a').href = videoUrl;
-            modal.querySelector('.modal-details span:first-child').textContent = "Year: " + releaseDate;
-            modal.querySelector('.modal-details span:nth-child(2)').textContent = "Length: " + length + "min";
+            modal.querySelector('.modal-details span:nth-child(1)').textContent = "Year: " + releaseDate;
+            modal.querySelector('.modal-details span:nth-child(2)').textContent = "Length: " + length + " min";
+            modal.querySelector('.modal-details span:nth-child(3)').textContent = "Genre: " + genre;
+            modal.querySelector('.modal-details span:nth-child(4)').textContent = "Cast: " + cast;
             modal.querySelector('.modal-description').textContent = description;
 
             modal.style.display = 'flex';
@@ -157,6 +161,7 @@
                 modal.classList.add('modal-show');
             }, 50);
         }
+
 
         function hideModal() {
             const modal = document.getElementById('movieModal');
@@ -198,6 +203,26 @@
        <a href="/chat" class="chatbot-icon">
         <i class="fas fa-comments"></i>
        </a>
+       <footer>
+        <div class="footer-content-inline">
+            <p>&copy; 2024 Movie Matcher. All rights reserved.</p>
+            <ul class="footer-links-inline">
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Service</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <div class="social-icons-inline">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+
     
 </body>
 

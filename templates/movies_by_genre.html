@@ -1,8 +1,99 @@
-{% extends "index.html" %}
+
 
 {% block content %}
   <h2>Movies in {{ genre.name }} Genre</h2>
-  
+  <style>
+    /* General Page Styling */
+    body {
+        background-color: #141414;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Title Styling */
+    h2 {
+        color: #e5e5e5;
+        font-size: 2.5rem;
+        margin: 30px 20px;
+        text-align: center;
+    }
+
+    /* Movie List Container */
+    .movie-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+
+    /* Individual Movie Item Styling */
+    .movie-item {
+        background-color: #222;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .movie-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Movie Titles */
+    .movie-item h3 {
+        font-size: 1.2rem;
+        margin: 10px;
+        color: #e5e5e5;
+    }
+
+    /* Movie Image */
+    .movie-item img {
+        width: 30%;
+        height: auto;
+        border-bottom: 2px solid #444;
+    }
+
+    /* Movie Information */
+    .movie-item p {
+        font-size: 0.9rem;
+        margin: 10px;
+        color: #b3b3b3;
+    }
+
+    /* Specific Styling for Genre List */
+    .movie-item p.genres {
+        margin-top: 10px;
+        color: #ffb300;
+    }
+
+    /* Empty Movie List Message */
+    .movie-list p {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #ff4c4c;
+        margin: 20px;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+        .movie-list {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+    }
+
+    @media (max-width: 480px) {
+        .movie-item h3 {
+            font-size: 1rem;
+        }
+    }
+
+  </style>
+  <a href="/" class="text-gray-400 hover:text-white">← Back to movies</a>
   <div class="movie-list">
     {% for movie in movies %}
       <div class="movie-item">
@@ -21,3 +112,4 @@
     {% endfor %}
   </div>
 {% endblock %}
+

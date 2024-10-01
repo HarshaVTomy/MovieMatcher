@@ -257,7 +257,7 @@ section.featured button:hover {
 
 /* Modal description */
 .modal-description {
-    font-size: 0.8em; /* Adjust font size */
+    font-size: 0.9em; /* Adjust font size */
     margin: 10px 0;
 }
 
@@ -345,3 +345,40 @@ section.featured button:hover {
     display: block;
 }
 
+.footer-content-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+.footer-links-inline {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links-inline li {
+    margin: 0 10px;
+}
+
+.footer-links-inline a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-links-inline a:hover {
+    text-decoration: underline;
+}
+
+.social-icons-inline a {
+    color: #fff;
+    margin-left: 10px;
+}
+
+.social-icons-inline a:hover {
+    color: #ccc;
+}

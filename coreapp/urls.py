@@ -26,4 +26,5 @@ urlpatterns = [
     path('movie/<int:pk>/review/', views.add_review, name='add_review'),
     path('customer-report/', views.customer_report, name='customer_report'),
     path('top-movies-report/', views.top_movies_report, name='top_movies_report'),
+    path('about/', views.about, name='about'),  # About Us page
 ]
