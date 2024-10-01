@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block content %}
+  <h2>Movies in {{ genre.name }} Genre</h2>
+  
+  <div class="movie-list">
+    {% for movie in movies %}
+      <div class="movie-item">
+        <h3>{{ movie.title }}</h3>
+        <img src="{{ movie.image_card.url }}" alt="{{ movie.title }}" width="200">
+        <p>Release Date: {{ movie.release_date }}</p>
+        <p>IMDB Rating: {{ movie.imdb_rating }}</p>
+        <p>Genres: 
+          {% for genre in movie.genres.all %}
+            {{ genre.name }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+      </div>
+    {% empty %}
+      <p>No movies found in this genre.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

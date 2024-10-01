@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <style>
+        /* Your custom styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0b0909; /* Dark background */
+            background-image:  url("https://assets.nflxext.com/ffe/siteui/vlv3/ab4b0b22-2ddf-4d48-ae88-c201ae0267e2/c8f1b665-bd37-400d-950f-413cb99552ec/GB-en-20231030-popsignuptwoweeks-perspective_alpha_website_large.jpg");
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; /* Hide overflow to prevent scrolling */
+            position: relative;
+        }
+        /* .bubble {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2); /* Transparent bubble */
+            /* border-radius: 50%; */ 
+            /* animation: bubbleAnimation 10s infinite ease-in-out alternate; /* Bubble animation */
+        /* } */ 
+        /* @keyframes bubbleAnimation {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                transform: translateY(-1000px) scale(2);
+                opacity: 0;
+            }
+        } */
+        .container.register-form {
+            background-color: #0c0b0b; /* Darker form background */
+            padding: 20px;
+            border-radius: 10px; /* Rounded corners */
+            width: 350px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .container.register-form .note {
+            text-align: center;
+            background: linear-gradient(to right, #03595c, #124284); /* Gradient background */
+            color: #fff; /* White text */
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .container.register-form .form-content {
+            padding: 20px 15px;
+        }
+        .container.register-form .form-group {
+            margin-bottom: 20px;
+        }
+        .container.register-form .form-control {
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Underline */
+            background-color: transparent; /* Transparent background */
+            box-shadow: none;
+            transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+            color: #fff; /* White text */
+        }
+        .container.register-form .form-control:focus {
+            border-color: #00d2ff; /* Glow effect on focus */
+        }
+        .container.register-form .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5); /* Placeholder color */
+        }
+        .container.register-form .btnSubmit {
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #1f4e59; /* Light blue background */
+            color: #fff; /* White text */
+            border: none;
+            width: 100%;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+        .container.register-form .btnSubmit:hover {
+            background-color: #007bb5; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+<div class="container register-form">
+    <div class="note">
+        <h1>Register</h1>
+    </div>
+    <div class="form-content">
+        <form method="post">
+            <!-- CSRF token if needed -->
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Your Name *" name="full-name" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-control" placeholder="Phone Number *" name="phone-number" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Your Password *" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Confirm Password *" name="confirm-password" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Enter Email Address" name="your-email" required>
+            </div>
+            <button type="submit" class="btnSubmit">Register</button>
+        </form>
+    </div>
+</div>
+
+<!-- Bubble animation -->
+<!-- <script> -->
+    <!-- // Generate bubbles
+    for (let i = 0; i < 50; i++) {
+        createBubble();
+    }
+
+    // Function to create a bubble
+    function createBubble() {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        bubble.style.left = `${Math.random() * 100}vw`;
+        bubble.style.top = `${Math.random() * 100}vh`;
+        bubble.style.animationDuration = `${Math.random() * 6 + 3}s`; // Randomize animation duration
+        document.body.appendChild(bubble); -->
+
+        <!-- // Remove bubble after animation ends
+        bubble.addEventListener('animationiteration', () => {
+            setTimeout(() => {
+                bubble.remove();
+            }, 10000); // Change this value to adjust bubble lifetime
+        });
+    } -->
+<!-- </script> -->
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Visualizations</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        canvas {
+            max-width: 600px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Movie Visualizations</h1>
+
+<h2>Number of Movies per Genre</h2>
+<canvas id="genreChart"></canvas>
+
+<h2>IMDb Rating Distribution</h2>
+<canvas id="ratingChart"></canvas>
+
+<script>
+    // Parse JSON data from Django context
+    const genreData = JSON.parse('{{ genre_data|escapejs }}');
+    const ratingData = JSON.parse('{{ imdb_rating_data|escapejs }}');
+
+    // Prepare data for genre chart
+    const genreLabels = genreData.map(item => item.name);
+    const genreCounts = genreData.map(item => item.movie_count);
+
+    // Create genre chart
+    const genreCtx = document.getElementById('genreChart').getContext('2d');
+    const genreChart = new Chart(genreCtx, {
+        type: 'bar',
+        data: {
+            labels: genreLabels,
+            datasets: [{
+                label: 'Number of Movies',
+                data: genreCounts,
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Prepare data for IMDb rating chart
+    const ratingLabels = ratingData.map(item => item.imdb_rating);
+    const ratingCounts = ratingData.map(item => item.count);
+
+    // Create IMDb rating chart
+    const ratingCtx = document.getElementById('ratingChart').getContext('2d');
+    const ratingChart = new Chart(ratingCtx, {
+        type: 'line',
+        data: {
+            labels: ratingLabels,
+            datasets: [{
+                label: 'Number of Movies',
+                data: ratingCounts,
+                fill: false,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

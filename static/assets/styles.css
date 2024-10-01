@@ -1,0 +1,347 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #141414;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+header img {
+    height: 30px;
+}
+
+/* Navbar styling */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 5px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button */
+#dropdownMenuButton {
+    cursor: pointer;
+    padding: 10px;
+    background: #333;
+    color: #fff;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%; /* Position dropdown below the button */
+    left: 0;
+    border-radius: 4px;
+    overflow-y: auto; /* Enable vertical scroll if needed */
+    max-height: 300px; /* Set maximum height to ensure it doesn’t get too large */
+}
+
+/* Dropdown items */
+.dropdown-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-content ul a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content ul a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+form {
+    display: flex;
+    align-items: center;
+}
+
+input[type="search"] {
+    background-color: #333;
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #f40612;
+}
+
+section {
+    padding: 20px;
+}
+
+section h1 {
+    color: #fff;
+}
+
+section h2 {
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+/* Featured Image Section */
+section.featured {
+    background-size: cover;
+    background-position: center;
+    height: 500px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align content to the left */
+    padding: 20px;
+    color: #fff;
+    position: relative; /* Ensure relative positioning for child elements */
+}
+
+/* Container for text and buttons with background */
+section.featured .text-container {
+    max-width: 500px; /* Adjust width as needed */
+    margin-left: 20px; /* Add some space from the left edge */
+    background-color: rgba(0, 0, 0, 0.7); /* Black background with 70% opacity */
+    padding: 20px; /* Add padding inside the container */
+    border-radius: 10px; /* Optional: rounded corners for the container */
+}
+
+/* Style for title and description */
+section.featured h1,
+section.featured p {
+    margin: 0 0 10px 0; /* Margin for spacing between elements */
+}
+
+section.featured button {
+    margin-top: 10px; /* Space above the button */
+    background-color: #e50914; /* Button background color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+section.featured button:hover {
+    background-color: #f40612;
+}
+
+
+/* Film Cards Container */
+.film-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Center the cards horizontally */
+}
+
+/* Film Card */
+.film-card {
+    width: 160px;
+    height: 240px;
+    background-color: #333;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.film-card:hover {
+    transform: scale(1.05);
+}
+
+/* Modal container */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Modal content */
+.modal-content {
+    background: #0e0e0e;
+    border-radius: 8px;
+    width: 80%; /* Reduce width */
+    max-width: 600px; /* Maximum width */
+    max-height: 80%; /* Set max height for scrolling */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Modal title */
+.modal-title {
+    font-size: 1.5em; /* Adjust font size */
+    margin-bottom: 10px;
+}
+
+/* Modal image */
+.modal-content img {
+    width: 100%; /* Make image responsive */
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Modal details */
+.modal-details {
+    font-size: 0.9em; /* Adjust font size */
+    margin: 10px 0;
+}
+
+/* Modal description */
+.modal-description {
+    font-size: 0.8em; /* Adjust font size */
+    margin: 10px 0;
+}
+
+/* Close button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+/* Add to List button */
+#addToListButton {
+    margin-top: 10px;
+}
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+        max-height: 90%;
+        padding: 15px;
+    }
+}
+
+.chatbot-icon {
+    position: fixed; /* Keeps it fixed at the bottom left */
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px; /* Distance from the left */
+    z-index: 1000; /* Ensures it stays on top of other elements */
+    width: 20px; /* Fixed width */
+    height: 20px; /* Fixed height */
+    display: flex; /* Center the icon */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    background: rgba(0, 0, 0, 0.7); /* Background for visibility */
+    border-radius: 70%; /* Rounded background */
+    padding: 20px; /* Padding around the icon */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Optional: shadow for depth */
+    transition: background 0.3s; /* Smooth transition for hover */
+}
+
+.chatbot-icon:hover {
+    background: rgba(0, 0, 0, 0.9); /* Darken on hover */
+}
+
+.chatbot-icon i {
+    font-size: 80px; /* Font size for the icon */
+    color: red; /* Icon color */
+}
+
+/* Style for the account dropdown */
+.account-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#accountDropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+#accountDropdownContent ul {
+    list-style-type: none;
+    padding: 10px;
+    text-align: left;
+}
+
+#accountDropdownContent ul a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 8px 16px;
+}
+
+#accountDropdownContent ul a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the dropdown content when hovering */
+.account-dropdown:hover #accountDropdownContent {
+    display: block;
+}
+
