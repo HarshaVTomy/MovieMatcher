@@ -23,9 +23,15 @@
             margin-bottom: 10px;
             text-align: center;
         }
+        .chart-container {
+            display: flex;  /* This will make the charts display in a row */
+            justify-content: space-around;
+            flex-wrap: wrap; /* Ensures charts stack on smaller screens */
+            gap: 10px; /* Adds space between the charts */
+        }
         canvas {
             max-width: 700px;
-            width: 100%;  /* Make the canvas responsive */
+            width: 100%;
             margin: 20px auto;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -33,7 +39,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .container {
-            max-width: 900px;
+            max-width: 1200px; /* Adjust container width to accommodate both charts in a row */
             margin: 0 auto;
             padding: 20px;
             background-color: #ffffff;
@@ -57,13 +63,18 @@
 <div class="container">
     <h1>Movie Visualizations</h1>
 
-    <h2>Number of Movies per Genre</h2>
-    <div class="chart-legend" aria-label="Genre Chart Legend"></div>
-    <canvas id="genreChart" aria-label="Number of Movies per Genre"></canvas>
-
-    <h2>IMDb Rating Distribution</h2>
-    <div class="chart-legend" aria-label="IMDb Rating Chart Legend"></div>
-    <canvas id="ratingChart" aria-label="IMDb Rating Distribution"></canvas>
+    <div class="chart-container">
+        <div class="chart-section">
+            <h2>Number of Movies per Genre</h2>
+            <div class="chart-legend" aria-label="Genre Chart Legend"></div>
+            <canvas id="genreChart" aria-label="Number of Movies per Genre"></canvas>
+        </div>
+        <div class="chart-section">
+            <h2>IMDb Rating Distribution</h2>
+            <div class="chart-legend" aria-label="IMDb Rating Chart Legend"></div>
+            <canvas id="ratingChart" aria-label="IMDb Rating Distribution"></canvas>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -111,35 +122,33 @@
     const ratingLabels = ratingData.map(item => item.imdb_rating);
     const ratingCounts = ratingData.map(item => item.count);
 
-    // Create IMDb rating chart
+    // Create IMDb rating chart as a pie chart
     const ratingCtx = document.getElementById('ratingChart').getContext('2d');
     const ratingChart = new Chart(ratingCtx, {
-        type: 'line',
+        type: 'pie',
         data: {
             labels: ratingLabels,
             datasets: [{
                 label: 'Number of Movies',
                 data: ratingCounts,
-                fill: false,
-                borderColor: 'rgba(255, 99, 132, 1)',
-                tension: 0.1
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 159, 64, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
             }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        title: function(tooltipItems) {
-                            return `Rating: ${tooltipItems[0].label}`;
-                        }
-                    }
-                }
-            }
         }
     });
 

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix Clone</title>
+    <title>Movie Matcher</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'assets/style.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,7 +15,7 @@
 
 <body class="text-white" style="background-color: #141414;">
     <header class="p-5 flex justify-between items-center">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" height="30" alt="Netflix Logo" width="110">
+        <img src="{% static 'moviematcher logo.png' %}" height="30" alt="Netflix Logo" width="110">
         
         
         <nav class="flex space-x-5">
@@ -45,10 +45,6 @@
                 <input type="search" name="search_term" placeholder="Search" class="bg-gray-700 p-2 rounded">
                 <button class="bg-red-600 text-white p-2 rounded hover:bg-red-500">Search</button>
             </form>
-            <!-- <div class="relative">
-                <a href="#" class="block p-2">Welcome, {{user.username}}</a>
-                <a href="/logout" class="block p-2">Logout</a>
-            </div> -->
         </div>
     </header>
     
